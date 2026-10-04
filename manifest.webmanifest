@@ -1,0 +1,10 @@
+{
+  "name": "Auto Diagnostika",
+  "short_name": "Auto Diagnostika",
+  "description": "Diagnostika chýb vozidla, poloha dielu a postup opravy",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f"
+}
