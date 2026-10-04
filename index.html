@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Auto Diagnostika V6</title>
+<style>
+:root{--bg:#07111f;--card:#101d2f;--card2:#14253a;--blue:#258cff;--cyan:#5db7ff;--txt:#f4f8ff;--muted:#9fb1c7;--red:#ff4d5e;--green:#26c77a;--line:#243a55}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(160deg,#06101d,#0a1727 55%,#07111f);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:18px 16px 30px}.top{display:flex;align-items:center;gap:12px;margin-bottom:18px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#258cff,#52c3ff);display:grid;place-items:center;font-size:24px;box-shadow:0 8px 25px #147bd944}.title{font-weight:800;font-size:22px}.sub{font-size:12px;color:var(--muted)}
+.card{background:linear-gradient(145deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 12px 30px #0003}
+.vehicle{display:flex;justify-content:space-between;gap:10px}.vehicle b{font-size:17px}.pill{background:#17395d;color:#9bd0ff;padding:7px 10px;border-radius:99px;font-size:12px;height:max-content}
+label{font-size:12px;color:var(--muted);display:block;margin:8px 0 6px}.input{display:flex;gap:8px} input,select{width:100%;background:#081523;border:1px solid #2b4563;color:white;border-radius:14px;padding:14px;font-size:16px;outline:none}
+button{border:0;border-radius:14px;padding:14px 16px;font-weight:800;font-size:14px;cursor:pointer}.primary{width:100%;background:linear-gradient(90deg,#167df0,#35a6ff);color:white;margin-top:10px}.secondary{width:100%;background:#17304c;color:#d8ebff;border:1px solid #2c5278;margin-top:9px}.shop{width:100%;background:linear-gradient(90deg,#139a5a,#27c879);color:white;margin-top:9px}.back{background:#142942;color:white;padding:9px 12px}.screen{display:none}.screen.active{display:block}
+.code{font-size:31px;font-weight:900}.danger{color:#ff7380}.ok{color:#55db9a}.muted{color:var(--muted)} h2{margin:6px 0 3px;font-size:20px} h3{font-size:15px;margin:0 0 8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#0a1726;border:1px solid #213a56;border-radius:15px;padding:12px}.stat small{color:var(--muted);display:block}.stat b{display:block;margin-top:4px}
+.partphoto{height:180px;border-radius:17px;background:radial-gradient(circle at 50% 40%,#41556c,#162638 50%,#09131e);display:grid;place-items:center;overflow:hidden;margin-top:10px}.sensor{position:relative;width:45px;height:115px;background:linear-gradient(90deg,#8895a2,#e5ebef,#7d8995);border-radius:10px 10px 5px 5px;transform:rotate(12deg);box-shadow:0 8px 20px #0008}.sensor:before{content:"";position:absolute;width:65px;height:28px;left:-10px;top:18px;background:#bac3ca;border-radius:7px}.sensor:after{content:"";position:absolute;width:8px;height:65px;background:#333;left:18px;top:-62px;border-radius:8px}
+.warn{background:#332713;border:1px solid #70572b;color:#ffe1a1;border-radius:14px;padding:12px;font-size:12px;margin-top:10px}.step{display:flex;gap:12px;margin:12px 0}.num{min-width:32px;height:32px;border-radius:50%;background:#2189f8;display:grid;place-items:center;font-weight:900}.diagram{height:220px;position:relative;background:#091725;border:1px solid #284663;border-radius:17px;overflow:hidden}.pipe{position:absolute;height:32px;width:300px;background:#7c8791;left:40px;top:110px;border-radius:20px;transform:rotate(-7deg)}.turbo{position:absolute;width:75px;height:75px;border:14px solid #75828e;border-radius:50%;left:25px;top:54px}.dot{position:absolute;width:20px;height:20px;background:var(--red);border:4px solid white;border-radius:50%;left:178px;top:92px;box-shadow:0 0 0 8px #ff4d5e33}.arrow{position:absolute;left:202px;top:56px;color:#ff7783;font-weight:900}.small{font-size:12px}.store{display:flex;justify-content:space-between;align-items:center;padding:13px;background:#0b1929;border:1px solid #263f5b;border-radius:14px;margin:9px 0}.badge{font-size:11px;padding:5px 8px;border-radius:10px;background:#153657;color:#9fd1ff}.footer{text-align:center;color:#60748d;font-size:11px;margin-top:24px}
+</style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#07111f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Auto Diagnostika">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+</head>
+<body><div class="app">
+<div class="top"><div class="logo">🚘</div><div><div class="title">Auto Diagnostika</div><div class="sub">Diagnostika • poloha dielu • oprava</div></div></div>
+
+<section id="home" class="screen active">
+ <div class="card vehicle"><div><span class="muted small">VYBRANÉ VOZIDLO</span><br><b>Mercedes-Benz ML 350 BlueTEC</b><div class="muted small">W166 • 2012 • 3.0 V6 diesel • 190 kW</div></div><span class="pill">Zmeniť</span></div>
+ <div class="card"><h3>Zadaj chybový kód</h3><label>DTC / OBD kód</label><div class="input"><input id="dtc" value="P0546" maxlength="8" placeholder="napr. P0546"></div><button class="primary" onclick="diagnose()">🔎 DIAGNOSTIKOVAŤ CHYBU</button></div>
+ <div class="card"><h3>Posledné kódy</h3><div class="store"><span><b>P0546</b><br><span class="muted small">Teplota výfukových plynov</span></span><span class="badge">Otvoriť</span></div><div class="store"><span><b>P2081</b><br><span class="muted small">EGT – rozsah/výkon obvodu</span></span><span class="badge">História</span></div></div>
+</section>
+
+<section id="result" class="screen">
+ <button class="back" onclick="go('home')">‹ Späť</button>
+ <div class="card"><div class="code danger" id="codeTitle">P0546</div><h2 id="faultTitle">EGT snímač – vysoký signál</h2><div class="muted small">Mercedes-Benz ML 350 BlueTEC • W166 • 2012 • OM642</div>
+ <div class="partphoto"><div class="sensor"></div></div><div class="small muted" style="text-align:center;margin-top:7px">Ilustračné zobrazenie dielu – presná fotografia sa musí overiť podľa VIN/OEM.</div></div>
+ <div class="card"><h3>Čo chyba znamená</h3><p id="meaning">Riadiaca jednotka zaznamenala príliš vysoký elektrický signál v okruhu snímača teploty výfukových plynov.</p><h3>Najprv overiť</h3><p class="muted small">Kabeláž a konektor, napájanie/signál, live dáta snímača a až potom samotný snímač. DTC sám o sebe nepotvrdzuje chybný diel.</p></div>
+ <div class="grid"><div class="stat"><small>Náročnosť</small><b>2/5*</b></div><div class="stat"><small>Čas opravy</small><b>Overiť*</b></div><div class="stat"><small>OEM číslo</small><b>Podľa VIN</b></div><div class="stat"><small>Uťahovací moment</small><b>Overiť*</b></div></div>
+ <div class="warn">⚠️ Hodnoty označené * nie sú servisné údaje. V ostrej aplikácii sa zobrazia až po overení pre konkrétne VIN/motor/pozíciu dielu.</div>
+ <button class="secondary" onclick="go('location')">📍 ZOBRAZIŤ POLOHU A SCHÉMU</button>
+ <button class="secondary" onclick="go('detail')">🔩 DETAIL SÚČIASTKY</button>
+ <button class="primary" onclick="go('repair')">🛠️ POSTUP VÝMENY</button>
+ <button class="shop" onclick="go('shops')">🛒 OBCHODY – KÚPIŤ DIEL</button>
+</section>
+
+<section id="location" class="screen"><button class="back" onclick="go('result')">‹ Späť</button><div class="card"><h2>Poloha a schéma</h2><p class="muted small">Ukážka spôsobu zobrazenia. Presná pozícia musí byť viazaná na VIN, motor a konkrétny DTC.</p><div class="diagram"><div class="pipe"></div><div class="turbo"></div><div class="dot"></div><div class="arrow">← kontrolovaný bod</div></div></div><div class="card"><h3>Ako sa k dielu dostať</h3><p class="muted">Aplikácia tu zobrazí reálnu fotografiu priestoru vozidla s označením dielu a prístupovej cesty.</p></div></section>
+
+<section id="detail" class="screen"><button class="back" onclick="go('result')">‹ Späť</button><div class="card"><h2>Detail súčiastky</h2><div class="partphoto"><div class="sensor"></div></div><p><b>Typ:</b> snímač teploty výfukových plynov</p><p><b>OEM:</b> <span class="muted">overiť podľa VIN a pozície</span></p><p><b>Konektor / závit:</b> <span class="muted">overiť podľa konkrétneho dielu</span></p></div></section>
+
+<section id="repair" class="screen"><button class="back" onclick="go('result')">‹ Späť</button><div class="card"><h2>Postup výmeny</h2><div class="warn">Toto je zatiaľ bezpečná šablóna. Presné náradie, veľkosť hlavice a moment dotiahnutia doplníme iba z overených servisných údajov.</div>
+ <div class="step"><div class="num">1</div><div><b>Potvrď chybu diagnostikou</b><div class="muted small">Skontroluj uložený DTC a live dáta.</div></div></div>
+ <div class="step"><div class="num">2</div><div><b>Skontroluj konektor a vedenie</b><div class="muted small">Poškodenie teplom, korózia, prerušenie alebo skrat.</div></div></div>
+ <div class="step"><div class="num">3</div><div><b>Over konkrétny diel</b><div class="muted small">VIN + motor + pozícia snímača + OEM číslo.</div></div></div>
+ <div class="step"><div class="num">4</div><div><b>Výmena podľa servisných údajov</b><div class="muted small">Aplikácia tu následne zobrazí fotografie jednotlivých krokov, presné náradie a moment.</div></div></div>
+ </div><button class="shop" onclick="go('shops')">🛒 OBCHODY – KÚPIŤ DIEL</button></section>
+
+<section id="shops" class="screen"><button class="back" onclick="go('result')">‹ Späť</button><div class="card"><h2>Obchody – kúpiť diel</h2><p class="muted small">Najprv sa musí potvrdiť OEM číslo. Potom aplikácia vyhľadá kompatibilné ponuky.</p>
+ <div class="store"><span><b>OEM diel</b><br><span class="muted small">Presná zhoda podľa VIN</span></span><span class="badge">Priorita</span></div>
+ <div class="store"><span><b>Aftermarket alternatívy</b><br><span class="muted small">Len overená kompatibilita</span></span><span class="badge">Porovnať</span></div>
+ <div class="warn">Nekupovať diel iba podľa chybového kódu. Jeden DTC môže mať viac príčin a rovnaký model môže používať viac variantov dielu.</div></div></section>
+
+<div class="footer">AUTO DIAGNOSTIKA • V6 funkčný prototyp</div>
+</div>
+<script>
+const data={
+"P0546":["EGT snímač – vysoký signál","Riadiaca jednotka zaznamenala príliš vysoký elektrický signál v okruhu snímača teploty výfukových plynov."],
+"P2081":["EGT – rozsah/výkon obvodu","Signál snímača teploty výfukových plynov je mimo očakávaného rozsahu alebo sa správa nevierohodne."],
+"P0401":["EGR – nedostatočný prietok","Riadiaca jednotka vyhodnotila nedostatočný prietok recirkulácie výfukových plynov."]
+};
+function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function diagnose(){let c=document.getElementById('dtc').value.trim().toUpperCase();let d=data[c];document.getElementById('codeTitle').textContent=c||"—";document.getElementById('faultTitle').textContent=d?d[0]:"Kód zatiaľ nie je v lokálnej demo databáze";document.getElementById('meaning').textContent=d?d[1]:"Finálna aplikácia bude používať rozsiahlu databázu/API. Táto V6 ukážka obsahuje iba niekoľko testovacích kódov.";go('result')}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+}
+</script>
+
+</body></html>
